@@ -18,12 +18,12 @@ const cartSlice = createSlice({
             const index = state.cartDishes.findIndex(cartDish => cartDish.dish.id === dish.id);
     
             if (index !== -1) {
-            state.cartDishes[index].amount++;
+                state.cartDishes[index].amount++;
             } else {
-            state.cartDishes.push({
-                dish,
-                amount: 1,
-            });
+                state.cartDishes.push({
+                    dish,
+                    amount: 1,
+                });
             }
         },
         clearCart: (state) => {
