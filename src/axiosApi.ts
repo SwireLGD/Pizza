@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosApi = axios.create({
-  baseURL: 'https://console.firebase.google.com/u/0/project/arsenchernov-blog/database/arsenchernov-blog-default-rtdb/data/~2F',
+  baseURL: 'https://arsenchernov-blog-default-rtdb.europe-west1.firebasedatabase.app',
 });
 
 export default axiosApi;

@@ -1,5 +1,4 @@
-import { Route, Routes } from "react-router-dom";
-import Dishes from "./containers/AdminDishes";
+import NewDish from "./containers/AddDish";
 import AdminDishes from "./containers/AdminDishes";
 
 const App = () => {
@@ -7,6 +6,7 @@ const App = () => {
   return (
     <>
       <AdminDishes />
+      <NewDish />
     </>
   );
 };

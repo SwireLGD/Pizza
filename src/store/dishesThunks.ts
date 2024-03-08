@@ -10,7 +10,7 @@ export const fetchDishes = createAsyncThunk<Dish[], void, {dispatch: AppDispatch
         const {data: dishes} = await axiosApi.get<ApiDishes | null>('/pizza.json');
 
         let newDishes: Dish[] = [];
-
+ 
         if (dishes) {
             newDishes = Object.keys(dishes).map(key => ({
                 id: key,

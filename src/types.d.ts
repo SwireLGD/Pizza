@@ -16,3 +16,9 @@ export interface CartDish {
     dish: Dish;
     amount: number;
 }
+
+export interface DishMutation {
+    title: string;
+    image: string;
+    price: string;
+}
