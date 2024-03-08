@@ -39,7 +39,7 @@ const DishItem: React.FC<Props & { isAdmin: boolean }> = ({dish, onDelete, delet
                                 {isLoading && <ButtonSpinner />}
                                 Delete
                             </button>
-                            <Link to={'/edit-dish/' + dish.id} className="btn btn-primary">Edit</Link>
+                            <Link to={'/admin/edit-dish/' + dish.id} className="btn btn-primary">Edit</Link>
                             </p>
                         )}
                     </div>

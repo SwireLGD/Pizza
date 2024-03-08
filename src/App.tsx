@@ -1,5 +1,8 @@
-import AdminDishes from "./containers/Dishes";
 import Appbar from "./components/Appbar/Appbar";
+import { Navigate, Route, Routes } from "react-router-dom";
+import AdminDishes from "./containers/Dishes";
+import EditDish from "./containers/EditDish";
+import NewDish from "./containers/AddDish";
 
 const App = () => {
 
@@ -7,7 +10,13 @@ const App = () => {
     <>
     <header><Appbar /></header>  
     <main className="container-fluid">
-      <AdminDishes />
+      <Routes>
+        <Route path="/" element={<AdminDishes />} />
+        <Route path="/admin" element={<Navigate replace to="/admin/dishes" />} />
+        <Route path="/admin/dishes" element={<AdminDishes />} />
+        <Route path="/admin/edit-dish/:id" element={<EditDish />} />
+        <Route path="/admin/add-dish" element={<NewDish />} />
+      </Routes>
     </main>
     </>
   );

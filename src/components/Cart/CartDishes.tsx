@@ -7,9 +7,10 @@ interface Props {
 }
 
 const CartDishes: React.FC<Props> = ({cartDishes}) => {
+    const delivery = 150
     const total = cartDishes.reduce((sum, cartDish) => {
         return sum + cartDish.dish.price * cartDish.amount;
-    }, 0);
+    }, 0) + delivery;
 
     return (
         <>
@@ -21,6 +22,9 @@ const CartDishes: React.FC<Props> = ({cartDishes}) => {
             ))}
             <div className="card border-0 p2">
                 <div className="row">
+                <div className="text-right d-block">
+                    Delivery: {delivery} KGS
+                </div>
                 <div className="col text-right">
                     Total:
                 </div>
