@@ -17,6 +17,8 @@ const DishItem: React.FC<Props & { isAdmin: boolean }> = ({dish, onDelete, delet
     const image = dish.image || noImageAvailable;
     const imageStyle = {
         background: `url(${image}) no-repeat center center / cover`,
+        height: '150px',
+        width: '150px',
     };
 
     const addDishToCart = () => {

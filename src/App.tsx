@@ -3,6 +3,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import AdminDishes from "./containers/Dishes";
 import EditDish from "./containers/EditDish";
 import NewDish from "./containers/AddDish";
+import PageNotFound from "./containers/PageNotFound";
 
 const App = () => {
 
@@ -16,6 +17,7 @@ const App = () => {
         <Route path="/admin/dishes" element={<AdminDishes />} />
         <Route path="/admin/edit-dish/:id" element={<EditDish />} />
         <Route path="/admin/add-dish" element={<NewDish />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </main>
     </>

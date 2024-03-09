@@ -1,6 +1,5 @@
 import React from 'react';
 import {CartDish} from "../../types";
-import { useAppDispatch } from '../../app/hooks';
 
 interface Props {
   cartDish: CartDish;
@@ -8,7 +7,6 @@ interface Props {
 }
 
 const CartItem: React.FC<Props> = ({cartDish, onDelete}) => {
-  const dispatch = useAppDispatch();
   const price = cartDish.dish.price * cartDish.amount;
 
   const handleDelete = () => {

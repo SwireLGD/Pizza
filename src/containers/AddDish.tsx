@@ -12,7 +12,7 @@ const NewDish: React.FC = () => {
         try {
             setIsCreating(true);
             await axiosApi.post('/pizza.json', dish);
-            navigate('/');
+            navigate('/admin');
         } finally {
             setIsCreating(false);
         }
