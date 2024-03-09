@@ -1,16 +1,24 @@
 import React from "react";
 import { CartDish } from "../../types";
 import CartItem from "./CartItem";
+import { useAppDispatch } from "../../app/hooks";
+import { deleteDishFromCart } from "../../store/cartSlice";
+
 
 interface Props {
-    cartDishes: CartDish[]
+    cartDishes: CartDish[];
 }
 
 const CartDishes: React.FC<Props> = ({cartDishes}) => {
+    const dispatch = useAppDispatch();
     const delivery = 150
     const total = cartDishes.reduce((sum, cartDish) => {
         return sum + cartDish.dish.price * cartDish.amount;
     }, 0) + delivery;
+
+    const handleDelete = (dishId: string) => {
+        dispatch(deleteDishFromCart(dishId));
+    };
 
     return (
         <>
@@ -18,6 +26,7 @@ const CartDishes: React.FC<Props> = ({cartDishes}) => {
                 <CartItem
                 key={cartDish.dish.id}
                 cartDish={cartDish}
+                onDelete={handleDelete}
                 />
             ))}
             <div className="card border-0 p2">

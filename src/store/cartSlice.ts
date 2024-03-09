@@ -33,25 +33,28 @@ const cartSlice = createSlice({
             const newCartDishes: CartDish[] = [];
     
             state.cartDishes.forEach(cartDish => {
-            const existingDish = dishes.find(dish => cartDish.dish.id === dish.id);
-    
-            if (!existingDish) {
-                return;
-            }
-    
-            newCartDishes.push({
-                amount: cartDish.amount,
-                dish: existingDish,
+                const existingDish = dishes.find(dish => cartDish.dish.id === dish.id);
+        
+                if (!existingDish) {
+                    return;
+                }
+        
+                newCartDishes.push({
+                    amount: cartDish.amount,
+                    dish: existingDish,
             });
             });
   
         state.cartDishes = newCartDishes;
+        },
+        deleteDishFromCart(state, action: PayloadAction<string>) {
+            state.cartDishes = state.cartDishes.filter(cartDish => cartDish.dish.id !== action.payload);
         },
     },
 });
 
 export const cartReducer = cartSlice.reducer;
 
-export const {addDish, clearCart, updateDishes} = cartSlice.actions;
+export const {addDish, clearCart, updateDishes, deleteDishFromCart} = cartSlice.actions;
 
 export const selectCartDishes = (state: RootState) => state.cart.cartDishes;

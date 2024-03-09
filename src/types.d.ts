@@ -28,3 +28,7 @@ export interface Customer {
     address: string;
     phone: string;
 }
+
+export interface Order {
+    [dishId: string]: number;
+}

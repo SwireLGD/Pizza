@@ -8,6 +8,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { clearCart, selectCartDishes } from "../../store/cartSlice";
 import Modal from "../Modal.tsx/Modal";
 import CartDishes from "../Cart/CartDishes";
+import { CartDish, Order } from "../../types";
+import axiosApi from "../../axiosApi";
 
 const Dishes: React.FC<{ isAdmin: boolean }> = ({ isAdmin }) => {
     const dispatch = useAppDispatch();
@@ -26,10 +28,23 @@ const Dishes: React.FC<{ isAdmin: boolean }> = ({ isAdmin }) => {
 
     const toggleModal = () => setShowModal(!showModal);
 
-    const handleOrder = () => {
-      dispatch(clearCart());
-      toggleModal();
-      navigate('/');
+    const handleOrder = async () => {
+      if (cartDishes.length > 0) {
+        const orderData: Order = cartDishes.reduce((acc: Order, cartDish: CartDish) => {
+          acc[cartDish.dish.id] = cartDish.amount;
+          return acc;
+        }, {});
+      
+
+        try {
+          await axiosApi.post('/orders.json', orderData);
+          dispatch(clearCart());
+          toggleModal();
+          navigate('/');
+        } catch (error) {
+          console.error('Failed to place the order:', error);
+        }
+      }
     };
 
     useEffect(() => {
@@ -65,15 +80,21 @@ const Dishes: React.FC<{ isAdmin: boolean }> = ({ isAdmin }) => {
             onClose={toggleModal}
         >
             <div className="modal-body">
+              {cartDishes.length > 0 ? (
                 <CartDishes cartDishes={cartDishes} />
+              ) : (
+                    <p>Cart is empty! Add something!</p>
+              )}
             </div>
             <div className="modal-footer">
                 <button className="btn btn-danger" onClick={toggleModal}>
                     Cancel
                 </button>
-                <button className="btn btn-success" onClick={handleOrder}>
-                    Order
-                </button>
+                {cartDishes.length > 0 && (
+                  <button className="btn btn-success" onClick={handleOrder}>
+                      Order
+                  </button>
+                )}
             </div>
         </Modal>
         </div>
