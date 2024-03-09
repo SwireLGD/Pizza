@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import { ApiDish } from "../types";
 import axiosApi from "../axiosApi";
 import DishForm from "../components/DishForm/DishForm";

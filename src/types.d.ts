@@ -22,3 +22,7 @@ export interface DishMutation {
     image: string;
     price: string;
 }
+
+export interface Order {
+    [dishId: string]: number;
+}
